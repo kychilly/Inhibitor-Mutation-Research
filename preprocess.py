@@ -1,0 +1,91 @@
+import os
+import yaml
+from pathlib import Path
+from Bio.PDB import PDBParser, PDBIO, Select
+from meeko import MoleculePreparation, PDBQTWriterLegacy
+from rdkit import Chem
+from rdkit.Chem import AllChem
+
+
+class ReceptorCleanSelect(Select):
+    """
+    Select filter to retain only standard protein amino acids (Chain A),
+    removing H2O molecules, crystallization ions, and heteroatoms.
+    """
+
+    def accept_chain(self, chain):
+        return chain.get_id() == 'A'
+
+    def accept_residue(self, residue):
+        # Exclude H_HOH (waters) and heteroatom residues (H_*)
+        if residue.id[0] != " ":
+            return False
+        return True
+
+
+def clean_pdb(input_pdb_path, output_pdb_path):
+    """Parses raw PDB structure and strips unwanted water/heteroatoms."""
+    parser = PDBParser(QUIET=True)
+    structure = parser.get_structure("protein", input_pdb_path)
+
+    io = PDBIO()
+    io.set_structure(structure)
+    io.save(str(output_pdb_path), ReceptorCleanSelect())
+    print(f"[+] Cleaned receptor saved to: {output_pdb_path}")
+
+
+def prepare_ligand_pdbqt(sdf_path, output_pdbqt_path):
+    """Converts a raw 3D SDF ligand file to AutoDock PDBQT format using Meeko."""
+    supplier = Chem.SDMolSupplier(str(sdf_path))
+    mol = next(supplier)
+    if mol is None:
+        raise ValueError(f"Failed to load ligand from {sdf_path}")
+
+    # Add polar hydrogens for docking scoring
+    mol = Chem.AddHs(mol, addCoords=True)
+
+    # Prepare parameterization via Meeko
+    preparator = MoleculePreparation()
+    mol_setups = preparator.prepare(mol)
+
+    for setup in mol_setups:
+        pdbqt_string, is_ok, error_msg = PDBQTWriterLegacy.write_string(setup)
+        if is_ok:
+            with open(output_pdbqt_path, "w") as f:
+                f.write(pdbqt_string)
+            print(f"[+] Processed ligand PDBQT saved to: {output_pdbqt_path}")
+            return
+        else:
+            print(f"[-] Error parameterizing {sdf_path.name}: {error_msg}")
+
+
+def main():
+    # Load frozen settings
+    with open("config/docking_config.yaml", "r") as f:
+        config = yaml.safe_load(f)
+
+    processed_dir = Path("data/processed")
+    processed_dir.mkdir(parents=True, exist_ok=True)
+
+    # 1. Preprocess Receptors
+    for target_name, raw_path in config["receptors"].items():
+        raw_pdb = Path(raw_path)
+        if raw_pdb.exists():
+            clean_pdb_path = processed_dir / f"{target_name}_clean.pdb"
+            clean_pdb(raw_pdb, clean_pdb_path)
+        else:
+            print(f"[!] Warning: Raw PDB file not found at {raw_path}")
+
+    # 2. Preprocess Ligands (3D SDF -> PDBQT)
+    ligand_dir = Path("data/raw/ligands")
+    for ligand_name in config["ligands"]:
+        sdf_file = ligand_dir / f"{ligand_name}.sdf"
+        if sdf_file.exists():
+            out_pdbqt = processed_dir / f"{ligand_name}.pdbqt"
+            prepare_ligand_pdbqt(sdf_file, out_pdbqt)
+        else:
+            print(f"[!] Warning: Raw SDF file not found at {sdf_file}")
+
+
+if __name__ == "__main__":
+    main()

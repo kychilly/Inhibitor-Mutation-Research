@@ -6,8 +6,7 @@ pandas>=2.0.0
 # Cheminformatics & Docking
 rdkit>=2023.03.1
 meeko>=0.4.0
-openbabel-python>=3.1.1
-vina>=1.2.5
+openbabel>=3.2.0
 
 # Structural & Visual Analysis (for downstream scripts)
 biopython>=1.81
