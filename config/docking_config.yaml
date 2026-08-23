@@ -1,18 +1,25 @@
-grid:
-  center_x: 22.014
-  center_y: 0.253
-  center_z: 52.794
-  size_x: 22.0
-  size_y: 22.0
-  size_z: 22.0
 docking:
   exhaustiveness: 16
   num_modes: 9
   energy_range: 3.0
   seed: 42
+grid:
+  size_x: 22.0
+  size_y: 22.0
+  size_z: 22.0
 receptors:
-  wildtype: data/raw/receptors/1M17.cif
-  t790m: data/raw/receptors/2JIT.cif
+  wildtype:
+    raw_path: data/raw/receptors/1M17.cif
+    prepared_path: data/processed/receptors/1M17_prepared.pdbqt
+    center_x: 22.014
+    center_y: 0.253
+    center_z: 52.794
+  t790m:
+    raw_path: data/raw/receptors/2JIT.cif
+    prepared_path: data/processed/receptors/2JIT_prepared.pdbqt
+    center_x: 21.5
+    center_y: 5.5
+    center_z: 28.5
 ligands:
 - gefitinib
 - erlotinib

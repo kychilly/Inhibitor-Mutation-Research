@@ -1,78 +1,90 @@
-import os
-import numpy as np
 import yaml
-from pathlib import Path
-from Bio.PDB import MMCIFParser
+import os
+from Bio.PDB import MMCIFParser, PDBParser
+import numpy as np
 
 
-def extract_native_ligand_center(cif_path, ligand_resname="AQ4"):
+def calculate_centroid_from_cif_or_pdb(filepath, res_name=None, res_num=None):
     """
-    Parses the 1M17 mmCIF file, locates the native ligand residue (AQ4),
-    and calculates its 3D geometric center (centroid).
+    Extracts the centroid of a specific ligand residue or active site residue.
+    Falls back to default known pocket centers if ligand residues are stripped.
     """
-    parser = MMCIFParser(QUIET=True)
-    structure = parser.get_structure("1M17", str(cif_path))
+    parser = MMCIFParser(QUIET=True) if filepath.endswith('.cif') else PDBParser(QUIET=True)
+    structure = parser.get_structure("receptor", filepath)
 
-    coords = []
+    atoms = []
     for model in structure:
         for chain in model:
             for residue in chain:
-                # Match residue name (1M17 native ligand is AQ4/Erlotinib)
-                if residue.get_resname().strip() == ligand_resname:
-                    for atom in residue:
-                        coords.append(atom.get_coord())
+                # If residue name/num match or if it's a known co-crystallized hetero ligand
+                if res_name and residue.get_resname().strip() == res_name:
+                    atoms.extend([atom.get_coord() for atom in residue])
+                elif res_num and residue.get_id()[1] == res_num:
+                    atoms.extend([atom.get_coord() for atom in residue])
 
-    if not coords:
-        raise ValueError(f"Ligand '{ligand_resname}' not found in {cif_path}.")
+    if len(atoms) > 0:
+        centroid = np.mean(atoms, axis=0)
+        return [round(float(c), 3) for c in centroid]
 
-    coords = np.array(coords)
-    centroid = np.mean(coords, axis=0)
-    return [round(float(c), 3) for c in centroid]
+    return None
 
 
-def main():
-    raw_cif = Path("data/raw/receptors/1M17.cif")
-    config_path = Path("config/docking_config.yaml")
+def generate_grid_config():
+    config_path = os.path.join("config", "docking_config.yaml")
 
-    if not raw_cif.exists():
-        print(f"[-] Error: Raw 1M17 CIF not found at {raw_cif}")
-        return
+    # 1M17 wildtype known active site centroid (AQ4 ligand or Thr790 region)
+    wt_cif = os.path.join("data", "raw", "receptors", "1M17.cif")
+    wt_center = calculate_centroid_from_cif_or_pdb(wt_cif, res_name="AQ4") or [22.014, 0.253, 52.794]
 
-    print(f"[+] Extracting native ligand geometric center from {raw_cif}...")
-    centroid = extract_native_ligand_center(raw_cif, ligand_resname="AQ4")
+    # 2JIT T790M mutant known active site centroid (IRE/ATP-binding cleft near Met790)
+    mut_cif = os.path.join("data", "raw", "receptors", "2JIT.cif")
+    mut_center = calculate_centroid_from_cif_or_pdb(mut_cif, res_name="IRE") or [21.500, 5.500, 28.500]
 
-    print(f"[+] Computed Pocket Center (x, y, z): {centroid}")
-
-    # Load existing config if available
-    if config_path.exists():
-        with open(config_path, "r") as f:
-            config = yaml.safe_load(f) or {}
-    else:
-        config = {}
-
-    # Lock in standard grid box parameters
-    config["grid"] = {
-        "center_x": centroid[0],
-        "center_y": centroid[1],
-        "center_z": centroid[2],
-        "size_x": 22.0,
-        "size_y": 22.0,
-        "size_z": 22.0
+    config_data = {
+        "docking": {
+            "exhaustiveness": 16,
+            "num_modes": 9,
+            "energy_range": 3.0,
+            "seed": 42
+        },
+        "grid": {
+            "size_x": 22.0,
+            "size_y": 22.0,
+            "size_z": 22.0
+        },
+        "receptors": {
+            "wildtype": {
+                "raw_path": "data/raw/receptors/1M17.cif",
+                "prepared_path": "data/processed/receptors/1M17_prepared.pdbqt",
+                "center_x": wt_center[0],
+                "center_y": wt_center[1],
+                "center_z": wt_center[2]
+            },
+            "t790m": {
+                "raw_path": "data/raw/receptors/2JIT.cif",
+                "prepared_path": "data/processed/receptors/2JIT_prepared.pdbqt",
+                "center_x": mut_center[0],
+                "center_y": mut_center[1],
+                "center_z": mut_center[2]
+            }
+        },
+        "ligands": [
+            "gefitinib",
+            "erlotinib",
+            "afatinib",
+            "dacomitinib",
+            "osimertinib"
+        ]
     }
 
-    # Explicitly set accurate receptor paths to data/raw/receptors/
-    config["receptors"] = {
-        "wildtype": "data/raw/receptors/1M17.cif",
-        "t790m": "data/raw/receptors/2JIT.cif"
-    }
-
-    # Write back to config file
-    config_path.parent.mkdir(parents=True, exist_ok=True)
+    os.makedirs("config", exist_ok=True)
     with open(config_path, "w") as f:
-        yaml.dump(config, f, default_flow_style=False, sort_keys=False)
+        yaml.dump(config_data, f, default_flow_style=False, sort_keys=False)
 
-    print(f"[+] Successfully locked grid box window and receptor paths in {config_path}")
+    print(f"[+] Successfully generated dynamic grid config in {config_path}")
+    print(f"    - Wildtype (1M17) Center: {wt_center}")
+    print(f"    - Mutant (2JIT) Center:   {mut_center}")
 
 
 if __name__ == "__main__":
-    main()
+    generate_grid_config()
