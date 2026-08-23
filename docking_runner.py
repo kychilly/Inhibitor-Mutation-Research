@@ -192,6 +192,7 @@ def main():
         verify_pdbqt_file(paths["pdbqt"])
         verify_grid_alignment(paths["pdbqt"], grid)
 
+# oh boy make sure u have good processing
     print("\n=== Phase 2: Executing Docking Matrix ===")
     raw_results = []
 
