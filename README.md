@@ -1,3 +1,8 @@
+Markdown
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
 ## Data Registration Log
 
 **Access Date:** 2026-08-21
