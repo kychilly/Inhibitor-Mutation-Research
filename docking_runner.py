@@ -89,7 +89,7 @@ def main():
     print("=== Phase 2: Executing Docking Matrix ===")
 
     # Run for t790m (or iterate through receptors_cfg for both)
-    target_receptors = ["t790m"]  # Change to ["wildtype", "t790m"] after this single experiment
+    target_receptors = ["wildtype", "t790m"]  # Change to ["wildtype", "t790m"]
 
     for rec_key in target_receptors:
         if rec_key not in receptors_cfg:

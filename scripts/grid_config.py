@@ -56,16 +56,16 @@ def generate_grid_config():
             "wildtype": {
                 "raw_path": "data/raw/receptors/1M17.cif",
                 "prepared_path": "data/processed/receptors/1M17_prepared.pdbqt",
-                "center_x": wt_center[0],
-                "center_y": wt_center[1],
-                "center_z": wt_center[2]
+                "center_x": 23.57, #wt_center[0]
+                "center_y": 9.772,
+                "center_z": 59.367,
             },
             "t790m": {
                 "raw_path": "data/raw/receptors/2JIT.cif",
                 "prepared_path": "data/processed/receptors/2JIT_prepared.pdbqt",
-                "center_x": mut_center[0],
-                "center_y": mut_center[1],
-                "center_z": mut_center[2]
+                "center_x": -12.458,
+                "center_y": 29.144,
+                "center_z": 36.837
             }
         },
         "ligands": [

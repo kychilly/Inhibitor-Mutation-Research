@@ -11,15 +11,15 @@ receptors:
   wildtype:
     raw_path: data/raw/receptors/1M17.cif
     prepared_path: data/processed/receptors/1M17_prepared.pdbqt
-    center_x: 22.014
-    center_y: 0.253
-    center_z: 52.794
+    center_x: 23.57
+    center_y: 9.772
+    center_z: 59.367
   t790m:
     raw_path: data/raw/receptors/2JIT.cif
     prepared_path: data/processed/receptors/2JIT_prepared.pdbqt
-    center_x: 21.5
-    center_y: 5.5
-    center_z: 28.5
+    center_x: -12.458
+    center_y: 29.144
+    center_z: 36.837
 ligands:
 - gefitinib
 - erlotinib
