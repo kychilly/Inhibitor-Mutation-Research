@@ -70,8 +70,8 @@ def prepare_ligand_pdbqt(sdf_path, output_pdbqt_path, num_conformers=15):
 
     # 3. Identify lowest-energy conformer ID
     best_conf_id = min(minimized_energies, key=lambda x: x[1])[0]
-    best_energy = min(minimized_energies, key=lambda x: x[1])[1] # PE can be negative, Etotal = Ebonds + Eangles + Edihedrals + Evanderwalls + Eelectrostatic
-    print(f"[+] {sdf_path.stem} | Best Conformer ID: {best_conf_id} | Potential Energy(yes this can be negative): {best_energy:.2f} kcal/mol")
+    best_energy = min(minimized_energies, key=lambda x: x[1])[1]
+    print(f"[+] {sdf_path.stem} | Best Conformer ID: {best_conf_id} | Potential Energy: {best_energy:.2f} kcal/mol")
 
     # 4. Isolate ONLY the lowest-energy conformer into a single-conformer Mol
     best_conf = mol.GetConformer(best_conf_id)
@@ -93,19 +93,24 @@ def prepare_ligand_pdbqt(sdf_path, output_pdbqt_path, num_conformers=15):
         else:
             print(f"[-] Error parameterizing {sdf_path.name}: {error_msg}")
 
+
 def main():
     # Load frozen settings
     with open("config/docking_config.yaml", "r") as f:
         config = yaml.safe_load(f)
 
-    processed_dir = Path("data/processed")
-    processed_dir.mkdir(parents=True, exist_ok=True)
+    # Set up dedicated subdirectories for processed outputs
+    processed_receptors_dir = Path("data/processed/receptors")
+    processed_ligands_dir = Path("data/processed/ligands")
+
+    processed_receptors_dir.mkdir(parents=True, exist_ok=True)
+    processed_ligands_dir.mkdir(parents=True, exist_ok=True)
 
     # 1. Preprocess Receptors (.cif parsing)
     for target_name, raw_path in config["receptors"].items():
         raw_cif = Path(raw_path)
         if raw_cif.exists():
-            clean_cif_path = processed_dir / f"{target_name}_clean.cif"
+            clean_cif_path = processed_receptors_dir / f"{target_name}_clean.cif"
             clean_cif(raw_cif, clean_cif_path)
         else:
             print(f"[!] Warning: Raw file not found at {raw_path}")
@@ -115,7 +120,7 @@ def main():
     for ligand_name in config["ligands"]:
         sdf_file = ligand_dir / f"{ligand_name}.sdf"
         if sdf_file.exists():
-            out_pdbqt = processed_dir / f"{ligand_name}.pdbqt"
+            out_pdbqt = processed_ligands_dir / f"{ligand_name}.pdbqt"
             prepare_ligand_pdbqt(sdf_file, out_pdbqt)
         else:
             print(f"[!] Warning: Raw SDF file not found at {sdf_file}")
