@@ -1,28 +1,21 @@
-# Grid Box Parameters (Centroid calculated from EGFR kinase domain ATP-binding pocket)
 grid:
-  center_x: 22.15
-  center_y: 52.31
-  center_z: 13.80
+  center_x: 22.014
+  center_y: 0.253
+  center_z: 52.794
   size_x: 22.0
   size_y: 22.0
   size_z: 22.0
-
-# AutoDock Vina Execution Parameters
 docking:
   exhaustiveness: 32
   num_modes: 9
   energy_range: 3.0
   seed: 42
-
-# Receptors to process
 receptors:
-  wildtype: "data/raw/1M17.pdb"
-  t790m: "data/raw/2ITW.pdb"
-
-# Targeted Ligands (SDF inputs)
+  wildtype: data/raw/1M17.cif
+  t790m: data/raw/2ITW.cif
 ligands:
-  - "gefitinib"
-  - "erlotinib"
-  - "afatinib"
-  - "dacomitinib"
-  - "osimertinib"
+- gefitinib
+- erlotinib
+- afatinib
+- dacomitinib
+- osimertinib

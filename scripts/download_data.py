@@ -2,6 +2,7 @@ import urllib.request
 from pathlib import Path
 
 # Official PubChem CIDs for the 5 drugs
+# Feel free to run this to download datasets locally
 DRUG_CIDS = {
     "gefitinib": 3088125,
     "erlotinib": 176870,
