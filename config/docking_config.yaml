@@ -11,8 +11,8 @@ docking:
   energy_range: 3.0
   seed: 42
 receptors:
-  wildtype: data/raw/1M17.cif
-  t790m: data/raw/2ITW.cif
+  wildtype: data/raw/receptors/1M17.cif
+  t790m: data/raw/receptors/2JIT.cif
 ligands:
 - gefitinib
 - erlotinib

@@ -60,12 +60,18 @@ def main():
         "size_z": 22.0
     }
 
+    # Explicitly set accurate receptor paths to data/raw/receptors/
+    config["receptors"] = {
+        "wildtype": "data/raw/receptors/1M17.cif",
+        "t790m": "data/raw/receptors/2JIT.cif"
+    }
+
     # Write back to config file
     config_path.parent.mkdir(parents=True, exist_ok=True)
     with open(config_path, "w") as f:
         yaml.dump(config, f, default_flow_style=False, sort_keys=False)
 
-    print(f"[+] Successfully locked grid box window in {config_path}")
+    print(f"[+] Successfully locked grid box window and receptor paths in {config_path}")
 
 
 if __name__ == "__main__":
