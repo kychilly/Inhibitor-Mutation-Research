@@ -6,7 +6,7 @@ grid:
   size_y: 22.0
   size_z: 22.0
 docking:
-  exhaustiveness: 32
+  exhaustiveness: 16
   num_modes: 9
   energy_range: 3.0
   seed: 42
