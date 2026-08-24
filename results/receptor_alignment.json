@@ -1,0 +1,10 @@
+{
+    "alignment_target": "Receptor Hinge Region Superposition",
+    "wildtype_structure": "data\\raw\\receptors\\1M17.cif",
+    "mutant_structure": "data\\raw\\receptors\\2JIT.cif",
+    "hinge_residue_range": "Residues 793-797 (Met793-Cys797)",
+    "hinge_rmsd_angstroms": 2.125,
+    "rmsd_threshold_angstroms": 1.5,
+    "exceeds_threshold": true,
+    "interpretation": "Backbone movement exceeds 1.5 \u00c5 threshold; logged as a potential structural confounder for rigid docking."
+}

@@ -8,6 +8,9 @@ from pathlib import Path
 # Base configuration
 BASE_DIR = Path("data/processed/docking_results")
 
+# Results config, this could really be a single line but oh well
+Results_DIR = Path("results")
+
 # Metadata mapping and chronological order
 GENERATIONS = {
     "gefitinib": "1st Gen",
@@ -163,6 +166,10 @@ def export_summary_tables(summary_rows):
     print(f"[+] Saved Summary CSV    -> {csv_path}")
     print(f"[+] Saved Summary MD     -> {md_path}")
     print(f"[+] Saved Summary LaTeX  -> {tex_path}")
+
+    # Just storing this same result in the results folder as well yk
+    Path("results").mkdir(exist_ok=True)
+    df_summary.to_csv("results/docking_table.csv", index=False)
 
 
 if __name__ == "__main__":
