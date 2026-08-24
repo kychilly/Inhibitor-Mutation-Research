@@ -1,0 +1,96 @@
+{
+    "validation_passed": false,
+    "thresholds_kcal_mol": {
+        "1st_gen_failure_min": 0.3,
+        "2nd_gen_retention_max": 0.3,
+        "2nd_gen_retention_min": 0.1,
+        "3rd_gen_selectivity_max": 0.1
+    },
+    "results": [
+        {
+            "drug": "afatinib",
+            "expected_gen": "2nd Gen",
+            "predicted_gen": "1st Gen",
+            "ddg": 0.46,
+            "wt_delta_g": -8.66,
+            "mut_delta_g": -8.2,
+            "status": "FAIL",
+            "note": "Severe affinity loss against T790M (Resistance)",
+            "ref_ki": {
+                "wt": 0.5,
+                "l858r_t790m": 10.0,
+                "sources": "Solca et al., JPET 2012 / Li et al., Oncogene 2008",
+                "docking_relevance": "Irreversible covalent inhibitor."
+            }
+        },
+        {
+            "drug": "dacomitinib",
+            "expected_gen": "2nd Gen",
+            "predicted_gen": "3rd Gen",
+            "ddg": -0.15,
+            "wt_delta_g": -8.46,
+            "mut_delta_g": -8.6,
+            "status": "FAIL",
+            "note": "Sustained/Enhanced binding against T790M",
+            "ref_ki": {
+                "wt": 6.0,
+                "l858r_t790m": 14.5,
+                "sources": "Engelman et al., Cancer Res 2007 / FDA CDER Review NDA 211288",
+                "docking_relevance": "Pan-ErbB irreversible inhibitor."
+            }
+        },
+        {
+            "drug": "erlotinib",
+            "expected_gen": "1st Gen",
+            "predicted_gen": "3rd Gen",
+            "ddg": -0.3,
+            "wt_delta_g": -7.04,
+            "mut_delta_g": -7.34,
+            "status": "FAIL",
+            "note": "Sustained/Enhanced binding against T790M",
+            "ref_ki": {
+                "wt": 1.2,
+                "t790m": 1250.0,
+                "sources": {
+                    "wt": "Moyer et al., Cancer Res 1997 / Fabian et al., Nat Biotechnol 2005",
+                    "t790m": "Godin-Heymann et al., Cancer Res 2007"
+                },
+                "docking_relevance": "Reversible quinazolin-4-amine TKI."
+            }
+        },
+        {
+            "drug": "gefitinib",
+            "expected_gen": "1st Gen",
+            "predicted_gen": "3rd Gen",
+            "ddg": 0.09,
+            "wt_delta_g": -9.18,
+            "mut_delta_g": -9.09,
+            "status": "FAIL",
+            "note": "Sustained/Enhanced binding against T790M",
+            "ref_ki": {
+                "wt": 35.3,
+                "t790m": 4.6,
+                "l858r": 2.4,
+                "l858r_t790m": 10.9,
+                "source": "Yun et al., PNAS 2008 (Table 1 - intrinsic binding/inhibition constant)",
+                "docking_relevance": "Direct physical inhibition parameter in an uncompeted pocket."
+            }
+        },
+        {
+            "drug": "osimertinib",
+            "expected_gen": "3rd Gen",
+            "predicted_gen": "3rd Gen",
+            "ddg": -0.08,
+            "wt_delta_g": -8.15,
+            "mut_delta_g": -8.23,
+            "status": "PASS",
+            "note": "Sustained/Enhanced binding against T790M",
+            "ref_ki": {
+                "wt": 12.0,
+                "t790m_l858r": 1.0,
+                "sources": "Cross et al., Cancer Discov 2014 (AZD9291)",
+                "docking_relevance": "3rd gen T790M-selective mutant inhibitor."
+            }
+        }
+    ]
+}

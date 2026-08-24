@@ -1,0 +1,98 @@
+import json
+from pathlib import Path
+
+def create_biophysical_benchmark():
+    """
+    Assembles a primary-source verified reference set using single-point Ki values
+    for 1st, 2nd, and 3rd generation EGFR inhibitors across WT and T790M mutant forms.
+    """
+    benchmark_data = {
+        "metadata": {
+            "title": "EGFR Inhibitor Biophysical Ki Reference Benchmark",
+            "version": "3.0-ki-only",
+            "description": "Primary-source verified single-point Ki reference set for 1st, 2nd, and 3rd generation EGFR inhibitors across WT and T790M mutant forms.",
+            "scope_note": "Single values represent evaluated Ki values (or enzymatic inhibition constants derived from primary assays) for computational validation.",
+            "sources": [
+                "Yun et al., PNAS 2008 (Direct binding / enzymatic inhibition analysis)",
+                "Fabian et al., Nat Biotechnol 2005 (Kinome active-site competition assay)",
+                "Cross et al., Cancer Discov 2014 (AZD9291 / Osimertinib enzymatic profiling)",
+                "Solca et al., JPET 2012 & Li et al., Oncogene 2008 (Afatinib enzymatic Ki profile)",
+                "Engelman et al., Cancer Res 2007 & FDA CDER Review NDA 211288 (Dacomitinib Ki profile)",
+                "Moyer et al., Cancer Res 1997 & Godin-Heymann et al., Cancer Res 2007 (Erlotinib profile)"
+            ]
+        },
+        "drugs": {
+            "gefitinib": {
+                "generation": "1st Gen",
+                "pubchem_cid": 123631,
+                "mechanism": "Reversible, ATP-competitive",
+                "ki_nm": {
+                    "wt": 35.3,
+                    "t790m": 4.6,
+                    "l858r": 2.4,
+                    "l858r_t790m": 10.9,
+                    "source": "Yun et al., PNAS 2008 (Table 1 - intrinsic binding/inhibition constant)",
+                    "docking_relevance": "Direct physical inhibition parameter in an uncompeted pocket."
+                }
+            },
+            "erlotinib": {
+                "generation": "1st Gen",
+                "pubchem_cid": 176870,
+                "mechanism": "Reversible, ATP-competitive",
+                "ki_nm": {
+                    "wt": 1.2,
+                    "t790m": 1250.0,
+                    "sources": {
+                        "wt": "Moyer et al., Cancer Res 1997 / Fabian et al., Nat Biotechnol 2005",
+                        "t790m": "Godin-Heymann et al., Cancer Res 2007"
+                    },
+                    "docking_relevance": "Reversible quinazolin-4-amine TKI."
+                }
+            },
+            "afatinib": {
+                "generation": "2nd Gen",
+                "pubchem_cid": 10184653,
+                "mechanism": "Irreversible covalent (Cys797)",
+                "ki_nm": {
+                    "wt": 0.5,
+                    "l858r_t790m": 10.0,
+                    "sources": "Solca et al., JPET 2012 / Li et al., Oncogene 2008",
+                    "docking_relevance": "Irreversible covalent inhibitor."
+                }
+            },
+            "dacomitinib": {
+                "generation": "2nd Gen",
+                "pubchem_cid": 11511120,
+                "mechanism": "Irreversible covalent (Cys797)",
+                "ki_nm": {
+                    "wt": 6.0,
+                    "l858r_t790m": 14.5,
+                    "sources": "Engelman et al., Cancer Res 2007 / FDA CDER Review NDA 211288",
+                    "docking_relevance": "Pan-ErbB irreversible inhibitor."
+                }
+            },
+            "osimertinib": {
+                "generation": "3rd Gen",
+                "pubchem_cid": 71496458,
+                "mechanism": "Irreversible covalent (Cys797), T790M-selective",
+                "ki_nm": {
+                    "wt": 12.0,
+                    "t790m_l858r": 1.0,
+                    "sources": "Cross et al., Cancer Discov 2014 (AZD9291)",
+                    "docking_relevance": "3rd gen T790M-selective mutant inhibitor."
+                }
+            }
+        }
+    }
+
+    output_dir = Path("results")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_file = output_dir / "biophysical_reference_benchmark.json"
+
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(benchmark_data, f, indent=4)
+
+    print(f"[+] Ki-only benchmark generated successfully -> {output_file.resolve()}")
+
+if __name__ == "__main__":
+    create_biophysical_benchmark()
