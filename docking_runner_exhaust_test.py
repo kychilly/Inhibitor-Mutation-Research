@@ -6,6 +6,8 @@ Benchmarks AutoDock Vina search space convergence by running Osimertinib
 against Wildtype EGFR across varying exhaustiveness levels (2, 4, 8, 16, 32).
 """
 
+# Make sure to include this in discussion or methodology, effective count
+
 import io
 import json
 import subprocess

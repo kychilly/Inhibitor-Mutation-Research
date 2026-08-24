@@ -1,0 +1,26 @@
+=== HYDROGEN BOND LOSS SUMMARY (WILDTYPE VS T790M) ===
+
+GEN    | DRUG         | WT COUNT  | MUT COUNT | WT H-BONDS (RESIDUE & DIST)      | LOST H-BONDS IN T790M    
+------------------------------------------------------------------------------------------------------------
+Gen 1  | Erlotinib    | 1         | 0         | THR854 (2.98Å)                   | THR854                   
+Gen 1  | Gefitinib    | 2         | 1         | ARG841 (3.23Å), ASP855 (3.01Å)   | ARG841, ASP855           
+Gen 2  | Afatinib     | 1         | 0         | MET793 (3.97Å)                   | MET793                   
+Gen 2  | Dacomitinib  | 1         | 0         | CYS797 (3.02Å)                   | CYS797                   
+Gen 3  | Osimertinib  | 1         | 0         | THR790 (3.07Å)                   | THR790                   
+
+
+
+==============================================================================================================
+=== HYDROPHOBIC CONTACT LOSS SUMMARY (WILDTYPE VS T790M) ===
+Note: Hydrophobic contact tracking is not strictly required for primary H-bond loss objectives,
+      but is included here to provide a complete picture of non-covalent active site changes.
+      Also because i am super scared and dont wanna lose random data lol.
+==============================================================================================================
+
+GEN    | DRUG         | WT COUNT  | MUT COUNT | WT HYDROPHOBIC RESIDUES             | LOST HYDROPHOBIC CONTACTS
+---------------------------------------------------------------------------------------------------------------
+Gen 1  | Erlotinib    | 4         | 3         | ALA743, LEU718, LEU844, VAL726      | ALA743, LEU718, LEU844   
+Gen 1  | Gefitinib    | 1         | 5         | LEU718                              | LEU718                   
+Gen 2  | Afatinib     | 6         | 4         | ALA743, LEU718, LEU844, LYS745, PHE723, VAL726 | ALA743, LEU718, LYS745   
+Gen 2  | Dacomitinib  | 5         | 2         | ASP800, LEU844, PHE723, VAL726      | ASP800, VAL726           
+Gen 3  | Osimertinib  | 2         | 4         | ASP800, PHE723                      | ASP800, PHE723           

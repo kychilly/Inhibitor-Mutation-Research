@@ -1,0 +1,240 @@
+{
+    "wildtype_afatinib": {
+        "h_bonds": [
+            {
+                "residue": "MET793",
+                "distance_angstrom": 3.97
+            }
+        ],
+        "hydrophobic": [
+            {
+                "residue": "LEU718",
+                "distance_angstrom": 3.61
+            },
+            {
+                "residue": "PHE723",
+                "distance_angstrom": 3.92
+            },
+            {
+                "residue": "VAL726",
+                "distance_angstrom": 3.99
+            },
+            {
+                "residue": "ALA743",
+                "distance_angstrom": 3.71
+            },
+            {
+                "residue": "LYS745",
+                "distance_angstrom": 3.64
+            },
+            {
+                "residue": "LEU844",
+                "distance_angstrom": 3.84
+            }
+        ],
+        "total_interactions": 7
+    },
+    "wildtype_dacomitinib": {
+        "h_bonds": [
+            {
+                "residue": "CYS797",
+                "distance_angstrom": 3.02
+            }
+        ],
+        "hydrophobic": [
+            {
+                "residue": "PHE723",
+                "distance_angstrom": 3.6
+            },
+            {
+                "residue": "PHE723",
+                "distance_angstrom": 3.81
+            },
+            {
+                "residue": "VAL726",
+                "distance_angstrom": 3.78
+            },
+            {
+                "residue": "ASP800",
+                "distance_angstrom": 3.6
+            },
+            {
+                "residue": "LEU844",
+                "distance_angstrom": 3.39
+            }
+        ],
+        "total_interactions": 6
+    },
+    "wildtype_erlotinib": {
+        "h_bonds": [
+            {
+                "residue": "THR854",
+                "distance_angstrom": 2.98
+            }
+        ],
+        "hydrophobic": [
+            {
+                "residue": "LEU718",
+                "distance_angstrom": 3.91
+            },
+            {
+                "residue": "VAL726",
+                "distance_angstrom": 3.71
+            },
+            {
+                "residue": "ALA743",
+                "distance_angstrom": 3.54
+            },
+            {
+                "residue": "LEU844",
+                "distance_angstrom": 3.87
+            }
+        ],
+        "total_interactions": 5
+    },
+    "wildtype_gefitinib": {
+        "h_bonds": [
+            {
+                "residue": "ARG841",
+                "distance_angstrom": 3.23
+            },
+            {
+                "residue": "ASP855",
+                "distance_angstrom": 3.01
+            }
+        ],
+        "hydrophobic": [
+            {
+                "residue": "LEU718",
+                "distance_angstrom": 3.79
+            }
+        ],
+        "total_interactions": 3
+    },
+    "wildtype_osimertinib": {
+        "h_bonds": [
+            {
+                "residue": "THR790",
+                "distance_angstrom": 3.07
+            }
+        ],
+        "hydrophobic": [
+            {
+                "residue": "PHE723",
+                "distance_angstrom": 3.79
+            },
+            {
+                "residue": "ASP800",
+                "distance_angstrom": 3.59
+            }
+        ],
+        "total_interactions": 3
+    },
+    "t790m_afatinib": {
+        "h_bonds": [],
+        "hydrophobic": [
+            {
+                "residue": "PHE723",
+                "distance_angstrom": 3.83
+            },
+            {
+                "residue": "PHE723",
+                "distance_angstrom": 3.68
+            },
+            {
+                "residue": "VAL726",
+                "distance_angstrom": 3.93
+            },
+            {
+                "residue": "LEU844",
+                "distance_angstrom": 3.69
+            }
+        ],
+        "total_interactions": 4
+    },
+    "t790m_dacomitinib": {
+        "h_bonds": [],
+        "hydrophobic": [
+            {
+                "residue": "PHE723",
+                "distance_angstrom": 3.75
+            },
+            {
+                "residue": "LEU844",
+                "distance_angstrom": 3.83
+            }
+        ],
+        "total_interactions": 2
+    },
+    "t790m_erlotinib": {
+        "h_bonds": [],
+        "hydrophobic": [
+            {
+                "residue": "PHE723",
+                "distance_angstrom": 3.62
+            },
+            {
+                "residue": "VAL726",
+                "distance_angstrom": 3.82
+            },
+            {
+                "residue": "LEU858",
+                "distance_angstrom": 3.68
+            }
+        ],
+        "total_interactions": 3
+    },
+    "t790m_gefitinib": {
+        "h_bonds": [
+            {
+                "residue": "LYS745",
+                "distance_angstrom": 3.27
+            }
+        ],
+        "hydrophobic": [
+            {
+                "residue": "PHE723",
+                "distance_angstrom": 3.61
+            },
+            {
+                "residue": "VAL726",
+                "distance_angstrom": 3.78
+            },
+            {
+                "residue": "ALA743",
+                "distance_angstrom": 3.98
+            },
+            {
+                "residue": "LEU844",
+                "distance_angstrom": 3.38
+            },
+            {
+                "residue": "LEU858",
+                "distance_angstrom": 3.81
+            }
+        ],
+        "total_interactions": 6
+    },
+    "t790m_osimertinib": {
+        "h_bonds": [],
+        "hydrophobic": [
+            {
+                "residue": "ALA743",
+                "distance_angstrom": 3.56
+            },
+            {
+                "residue": "LEU792",
+                "distance_angstrom": 3.99
+            },
+            {
+                "residue": "LEU844",
+                "distance_angstrom": 3.59
+            },
+            {
+                "residue": "PRO877",
+                "distance_angstrom": 3.79
+            }
+        ],
+        "total_interactions": 4
+    }
+}
