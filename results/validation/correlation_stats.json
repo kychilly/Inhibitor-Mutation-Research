@@ -1,0 +1,63 @@
+{
+    "pearson_r": -0.11602447094289295,
+    "pearson_p": 0.852605170032164,
+    "spearman_rho": -0.19999999999999998,
+    "spearman_p": 0.747060078104662,
+    "dataset": [
+        {
+            "Drug": "Erlotinib",
+            "Gen": "Gen 1",
+            "WT_DG": -7.040933333333332,
+            "T790M_DG": -7.342866666666666,
+            "DeltaDeltaG": -0.3019333333333334,
+            "WT_IC50_nM": 2.0,
+            "T790M_IC50_nM": 3000.0,
+            "IC50_Fold_Change": 1500.0,
+            "Log_IC50_Fold": 3.1760912590556813
+        },
+        {
+            "Drug": "Gefitinib",
+            "Gen": "Gen 1",
+            "WT_DG": -9.1814,
+            "T790M_DG": -9.094333333333333,
+            "DeltaDeltaG": 0.08706666666666685,
+            "WT_IC50_nM": 15.5,
+            "T790M_IC50_nM": 823.3,
+            "IC50_Fold_Change": 53.11612903225806,
+            "Log_IC50_Fold": 1.7252264172412288
+        },
+        {
+            "Drug": "Afatinib",
+            "Gen": "Gen 2",
+            "WT_DG": -8.658,
+            "T790M_DG": -8.201066666666666,
+            "DeltaDeltaG": 0.45693333333333364,
+            "WT_IC50_nM": 0.5,
+            "T790M_IC50_nM": 10.0,
+            "IC50_Fold_Change": 20.0,
+            "Log_IC50_Fold": 1.3010299956639813
+        },
+        {
+            "Drug": "Dacomitinib",
+            "Gen": "Gen 2",
+            "WT_DG": -8.456333333333333,
+            "T790M_DG": -8.6008,
+            "DeltaDeltaG": -0.1444666666666663,
+            "WT_IC50_nM": 6.0,
+            "T790M_IC50_nM": 60.0,
+            "IC50_Fold_Change": 10.0,
+            "Log_IC50_Fold": 1.0
+        },
+        {
+            "Drug": "Osimertinib",
+            "Gen": "Gen 3",
+            "WT_DG": -8.150733333333333,
+            "T790M_DG": -8.2352,
+            "DeltaDeltaG": -0.08446666666666758,
+            "WT_IC50_nM": 493.8,
+            "T790M_IC50_nM": 11.4,
+            "IC50_Fold_Change": 0.023086269744835967,
+            "Log_IC50_Fold": -1.6366462342594408
+        }
+    ]
+}
