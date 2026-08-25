@@ -1,0 +1,12 @@
+# Docking Evaluation Summary Report
+
+| Ligand      | Target   | WT Mean ± SD   | T790M Mean ± SD   |   Score Shift (ΔΔG) |
+|:------------|:---------|:---------------|:------------------|--------------------:|
+| Erlotinib   | 1st Gen  | -7.04 ± 0.12   | -7.34 ± 0.04      |               -0.3  |
+| Gefitinib   | 1st Gen  | -9.18 ± 0.52   | -9.09 ± 0.02      |                0.09 |
+| Afatinib    | 2nd Gen  | -8.66 ± 0.15   | -8.20 ± 0.02      |                0.46 |
+| Dacomitinib | 2nd Gen  | -8.46 ± 0.05   | -8.60 ± 0.11      |               -0.14 |
+| Osimertinib | 3rd Gen  | -8.15 ± 0.16   | -8.24 ± 0.08      |               -0.08 |
+
+---
+* **Note on ΔΔG:** Calculated as `T790M Mean - WT Mean`. Positive values represent an energetic penalty against the mutation, whereas negative values indicate stronger relative computed affinity.
