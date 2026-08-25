@@ -22,16 +22,16 @@ Computational modeling and structural profiling pipeline evaluating 1st, 2nd, an
 | **Osimertinib: 3rd Gen Inhibitor** | PubChem (Osimertinib) | SDF / PDBQT | `data/raw/ligands/osimertinib.sdf/` |
 
 ## For replication, pull and follow:
-## Execution Order
+Execution Order
 
-## 1. python scripts/docking_runner.py          - Execute docking simulations
+1. python scripts/docking_runner.py          - Execute docking simulations
 
-## 2. python scripts/plip_analyzer.py           - Analyze interaction fingerprints
+2. python scripts/plip_analyzer.py           - Analyze interaction fingerprints
 
-## 3. python scripts/build_results_table.py     - Build summary data tables
+3. python scripts/build_results_table.py     - Build summary data tables
 
-## 4. python scripts/plot_results.py            - Generate binding affinity plots
+4. python scripts/plot_results.py            - Generate binding affinity plots
 
-## 5. python scripts/generate_pymol_figures.py  - Render 3D PyMOL structural models
+5. python scripts/generate_pymol_figures.py  - Render 3D PyMOL structural models
 
-## 6. python scripts/statistical_validation.py  - Perform 2D diagram generation & IC50 validation
+6. python scripts/statistical_validation.py  - Perform 2D diagram generation & IC50 validation
