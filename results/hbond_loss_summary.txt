@@ -1,0 +1,22 @@
+=== HYDROGEN BOND LOSS SUMMARY (WILDTYPE VS T790M) ===
+
+GEN    | DRUG         | WT COUNT  | MUT COUNT | WT H-BONDS (RESIDUE & DIST)          | LOST H-BONDS IN T790M (AND GAINED)      
+--------------------------------------------------------------------------------------------------------------------------------
+Gen 1  | Erlotinib    | 1         | 0         | THR854                               | THR854                                  
+Gen 1  | Gefitinib    | 2         | 1         | ARG841, ASP855                       | ARG841, ASP855 (Gained: LYS745)         
+Gen 2  | Afatinib     | 1         | 0         | MET793                               | MET793                                  
+Gen 2  | Dacomitinib  | 1         | 0         | CYS797                               | CYS797                                  
+Gen 3  | Osimertinib  | 1         | 0         | THR790                               | THR790                                  
+
+
+================================================================================================================================
+=== HYDROPHOBIC CONTACT LOSS SUMMARY (WILDTYPE VS T790M) ===
+================================================================================================================================
+
+GEN    | DRUG         | WT COUNT  | MUT COUNT | WT HYDROPHOBIC RESIDUES                       | LOST / GAINED CONTACTS IN T790M              
+-------------------------------------------------------------------------------------------------------------------------------------------
+Gen 1  | Erlotinib    | 4         | 3         | ALA743, LEU718, LEU844, VAL726                | ALA743, LEU718, LEU844 (Gained: LEU858, PHE723)
+Gen 1  | Gefitinib    | 1         | 5         | LEU718                                        | LEU718 (Gained: ALA743, LEU844, LEU858, PHE723, VAL726)
+Gen 2  | Afatinib     | 6         | 4         | ALA743, LEU718, LEU844, LYS745, PHE723, VAL726 | ALA743, LEU718, LYS745                       
+Gen 2  | Dacomitinib  | 5         | 2         | ASP800, LEU844, PHE723, VAL726                | ASP800, VAL726                               
+Gen 3  | Osimertinib  | 2         | 4         | ASP800, PHE723                                | ASP800, PHE723 (Gained: ALA743, LEU792, LEU844, PRO877)
